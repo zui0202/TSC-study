@@ -9,7 +9,7 @@ https://www.mongodb.com/cloud/atlas/register
 위 사이트에서 로그인(회원가입) 후 클러스터를 생성하고 connection string을 알아둔다.
 
 ```
-mongodb+srv://zui0202:<password>@cluster0.xmkh2bm.mongodb.net/?retryWrites=true&w=majority
+mongodb+srv://<username>:<password>@cluster0.xmkh2bm.mongodb.net/<dbname>.?retryWrites=true&w=majority
 ```
 버전마다 조금씩 다르겠지만 이와 비슷한 형태일 것이다.
 
