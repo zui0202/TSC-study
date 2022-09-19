@@ -240,8 +240,54 @@ $ sudo apt-get install nginx
 
 
 ### 프로젝트 올리기
+```
+$ git clone 본인_프로젝트_git주소
+```
+git에 올려놓은 프로젝트를 받아온다.
+
+
+### pm2로 node 실행
+```
+$ pm2 start ./bin/www
+```
+위 명령어를 입력하고 퍼블릭 IP:3000 으로 접속하면 서버가 실행중임을 확인할 수 있다.
 
 
 ### nginx 프록시 서버 설정하기
+```
+$ cd /etc/nginx/sites-enabled
+```
+해당 경로로 이동해준다.
 
+존재하는 default 파일을 삭제하고 다시 생성해준다.
+
+```
+$ sudo rm default
+$ sudo nano default
+```
+
+default 파일에는 다음과 같은 내용을 적어준다.
+```
+server {
+        listen 80;
+        listen [::]:80;
+
+        access_log /var/log/nginx/reverse-access.log;
+        error_log /var/log/nginx/reverse-error.log;
+
+        location / {
+                    proxy_pass http://127.0.0.1:3000;
+  }
+}
+```
+
+```
+$ sudo nginx -t
+```
+위의 명령어를 입력하고 다음과 같이 나오면 성공이다.
+
+```
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+```
 
